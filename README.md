@@ -53,29 +53,31 @@ Output lands in `analyze/outputs/<date>_<clip>/`:
 
 ---
 
-## Tier 1 quickstart (live coach on your iPhone)
+## Tier 1 — live coach on your iPhone
 
-```powershell
-cd live
-npm install
-npm run dev
-```
+**Deployed: https://sendarul.github.io/rowCoach/** — no laptop needed at the gym.
+Auto-redeploys on every push to `main` (GitHub Actions → Pages).
 
-Vite prints a `https://<your-laptop-LAN-IP>:5173` URL. On your iPhone (same Wi-Fi):
+On your iPhone:
 
-1. Open that HTTPS URL in **Safari**. Accept the self-signed cert warning
-   ("Show Details" → "visit this website"). HTTPS is required for camera access.
-2. Pair your **Bluetooth earbuds** to the phone.
-3. Put the phone on a **tripod, side-on**, full body in frame.
+1. Open **https://sendarul.github.io/rowCoach/** in Safari (real HTTPS, so camera
+   works with no cert warnings). Optional: Share → **Add to Home Screen**.
+2. Pair your **Bluetooth earbuds**.
+3. Phone on a **tripod, side-on**, full body in frame.
 4. Tap **Start coaching** (this also unlocks audio — required by iOS).
 5. Row. You'll hear short cues ("legs first!", "slow the slide") for clear faults.
-6. Optional: Share → **Add to Home Screen** to use it like an app.
 
-If the self-signed cert blocks the camera on iOS, run a quick tunnel for a
-trusted HTTPS URL instead, e.g. `cloudflared tunnel --url https://localhost:5173`.
+> First load needs internet (MoveNet model downloads from Google, then caches).
 
 Tier 1 uses **MoveNet** (TensorFlow.js) for in-browser pose and the **Web Speech
 API** for cues. It grades against the same `shared/stroke_targets.json` as Tier 2.
+
+### Local dev
+```powershell
+cd live
+npm install
+npm run dev   # HTTPS dev server on your LAN IP for quick iteration
+```
 
 ## What it measures
 Catch shin angle · catch back angle · legs-before-back sequencing · arm-break
