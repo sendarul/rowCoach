@@ -1,0 +1,8 @@
+# Tier 2 (Python deep-dive) dependencies
+opencv-python>=4.9
+mediapipe>=0.10.14
+numpy>=1.26,<2.0
+scipy>=1.11
+matplotlib>=3.8
+anthropic>=0.40
+python-dotenv>=1.0

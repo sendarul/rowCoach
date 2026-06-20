@@ -1,0 +1,100 @@
+{
+  "_meta": {
+    "description": "Single source of truth for what a 'good' erg stroke looks like. Shared by Tier 1 (PWA, imported as JSON) and Tier 2 (Python config). All values are PROVISIONAL starting points from standard Concept2/coaching guidance and MUST be tuned against real side-view clips.",
+    "grading": "For each metric: a value inside [target_min, target_max] grades 'good'. Outside target but within minor_tolerance grades 'minor'. Beyond that grades 'needs_work'. Angle metrics are degrees; timing metrics are milliseconds (negative = the event happens too early); ratio/cv metrics are unitless.",
+    "version": 1
+  },
+  "metrics": {
+    "catch_shin_angle": {
+      "label": "Catch shin angle",
+      "describe": "Shin (knee->ankle) deviation from vertical at the catch. ~0 deg = vertical shins (ideal).",
+      "unit": "deg_from_vertical",
+      "target_min": 0,
+      "target_max": 18,
+      "minor_tolerance": 12,
+      "cue_low": "reach a bit more",
+      "cue_high": "too far forward",
+      "priority": 4
+    },
+    "catch_back_angle": {
+      "label": "Catch back angle",
+      "describe": "Torso (hip->shoulder) forward lean from vertical at the catch. Pivot from the hips, flat back; ~30-45 deg forward is the target window.",
+      "unit": "deg_forward_of_vertical",
+      "_note": "Weak discriminator: forward lean is common to good hinge AND bad over-reach. Cannot see lumbar rounding (BlazePose models torso as a straight line). Kept informational with a wide range; do not over-trust.",
+      "target_min": 10,
+      "target_max": 50,
+      "minor_tolerance": 15,
+      "cue_low": "lean forward more from the hips",
+      "cue_high": "don't over-reach at the catch",
+      "priority": 6
+    },
+    "legs_back_sequence": {
+      "label": "Legs-before-back sequencing",
+      "describe": "Offset between when the legs reach 50% of their drive extension and when the back reaches 50% of its swing-open. Positive = legs lead (good). Negative/near-zero = back opens too early (the classic strong-legs fault). Validated: good rowers ~+90-120ms, flawed ~-22 to 0ms.",
+      "unit": "ms",
+      "target_min": 50,
+      "target_max": 500,
+      "minor_tolerance": 60,
+      "cue_low": "legs first!",
+      "cue_high": "let the back swing through sooner",
+      "priority": 1
+    },
+    "arm_break_timing": {
+      "label": "Arm-break timing",
+      "describe": "Offset between legs reaching 50% extension and elbows reaching 50% of their bend. Positive = arms break after legs (good). NOTE: not yet reliably validated on test clips; kept wide and low-priority to avoid false diagnoses until calibrated on continuous footage.",
+      "unit": "ms",
+      "target_min": -50,
+      "target_max": 700,
+      "minor_tolerance": 150,
+      "cue_low": "legs then arms",
+      "cue_high": "finish the stroke with the arms",
+      "priority": 7
+    },
+    "finish_layback_angle": {
+      "label": "Finish layback angle",
+      "describe": "Torso lean PAST vertical at the finish. Some layback is good for a strong finish; too much wastes energy and stresses the back.",
+      "unit": "deg_past_vertical",
+      "_note": "Softened from elite (30-45) to recreational ranges; validated good recreational rower laid back ~17deg, excessive demo ~52deg.",
+      "target_min": 10,
+      "target_max": 40,
+      "minor_tolerance": 10,
+      "cue_low": "lean back a touch more at the finish",
+      "cue_high": "ease the layback",
+      "priority": 5
+    },
+    "drive_recovery_ratio": {
+      "label": "Drive:recovery ratio",
+      "describe": "Recovery duration divided by drive duration. Drive is explosive, recovery is patient; ~1:2 (value ~2.0) is the classic target. Low value = rushing the slide.",
+      "unit": "ratio_recovery_over_drive",
+      "_note": "Softened floor from 1.8 to 1.5: validated competitive steady-state rower ran ~1.6. The idealized 1:2 is aspirational; real low-rate steady state is ~1.5-1.7.",
+      "target_min": 1.5,
+      "target_max": 2.6,
+      "minor_tolerance": 0.4,
+      "cue_low": "slow the slide",
+      "cue_high": "a little quicker on the recovery",
+      "priority": 1
+    },
+    "stroke_rate": {
+      "label": "Stroke rate (SPM)",
+      "describe": "Strokes per minute. Informational for steady-state low-impact cardio; a wide range is fine. Not strongly graded.",
+      "unit": "spm",
+      "target_min": 18,
+      "target_max": 30,
+      "minor_tolerance": 6,
+      "cue_low": "pick up the rate",
+      "cue_high": "bring the rate down",
+      "priority": 9
+    },
+    "rhythm_consistency": {
+      "label": "Rhythm consistency",
+      "describe": "Coefficient of variation of stroke duration across the piece (stdev/mean). Lower = smoother, more repeatable strokes.",
+      "unit": "cv",
+      "target_min": 0.0,
+      "target_max": 0.10,
+      "minor_tolerance": 0.08,
+      "cue_low": "",
+      "cue_high": "smooth it out",
+      "priority": 6
+    }
+  }
+}

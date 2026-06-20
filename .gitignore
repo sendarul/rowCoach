@@ -1,0 +1,25 @@
+# secrets
+**/.env
+
+# python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# tier 2 artifacts
+analyze/outputs/
+analyze/samples/
+analyze/models/
+
+# live test bundle
+live/test/*.mjs
+
+# tier 1 / node
+live/node_modules/
+live/dist/
+
+# os
+.DS_Store
+Thumbs.db
+pose-estimation.md
